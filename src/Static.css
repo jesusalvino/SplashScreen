@@ -1,0 +1,65 @@
+.checkboxShowScreenAgain {
+    vertical-align: middle;
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    display: grid;
+    grid-template-columns: 1.2em auto;
+    gap: 0.5em;
+}
+
+.primaryButton {
+    color: white;
+    border-color: white;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 2px;
+    background-color: #363636;
+    cursor: pointer;
+    height: 24px;
+}
+
+.secondaryButton {
+    color: white;
+    border-radius: 2px;
+    border: 2px solid #38ABDF;
+    box-shadow: none;
+    background-color: #38ABDF;
+    padding: 1px 0px !important;
+    font-size: 12px;
+}
+
+.buttonLabel {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.importSettingsText {
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.tooltip>div.tooltip-inner {
+    text-align: left;
+    background-color: white !important;
+    color: black !important;
+    font-size: 11px;
+    pointer-events: none !important;
+}
+
+.tooltip.show {
+    opacity: 1 !important;
+}
+
+.tooltip-arrow {
+    color: white !important;
+    --bs-tooltip-bg: white !important;
+}
+
+.tooltip{
+    --bs-tooltip-border-radius: 2px !important;
+}

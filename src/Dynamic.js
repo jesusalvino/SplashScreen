@@ -8,7 +8,8 @@ class Dynamic extends React.Component {
         this.state = {
             barSize: "0%",
             dynamoVersion: "",
-            loadDescription: ""
+            loadDescription: "",
+            loadingTime: "Loading time: "
         }
 
         //This is a reference to the DOM of the project that will be called in Dynamo to fill the loading properties
@@ -29,15 +30,21 @@ class Dynamic extends React.Component {
                 <div >
                     {this.state.loadDescription}
                 </div>
+                <br/>
+                <br/>
+                <div className='loadingTimeFooter' >
+                    {this.state.loadingTime}
+                </div>                
             </div>
         );
     }
 
-    setBarProperties(dynamoVersion, loadDescription, barSize) {
+    setBarProperties(dynamoVersion, loadDescription, barSize, loadingTime) {
         this.setState({ 
             barSize: barSize,
             dynamoVersion: dynamoVersion,
-            loadDescription: loadDescription
+            loadDescription: loadDescription,
+            loadingTime: loadingTime
         })
     }
 }
