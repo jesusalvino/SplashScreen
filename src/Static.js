@@ -27,12 +27,11 @@ class Static extends React.Component {
       importStatus: importStatusEnum.none,
       importSettingsTitle: 'Import settings',
       errorDescription:
-        'Something went wrong when importing your custom setting file. Please try again or proceed with default settings.',
+                'Something went wrong when importing your custom setting file. Please try again or proceed with default settings.',
     };
 
     window.setImportStatus = this.setImportStatus.bind(this);
   }
-
   render() {
     return (
       <Container className='pr-3'>
@@ -116,9 +115,14 @@ class Static extends React.Component {
   readFile(event) {
     let file = event.target.files[0];
     if (file) {
-      if (chrome.webview !== undefined) {
-        chrome.webview.hostObjects.scriptObject.ImportSettings(file);
-      }
+      var fr = new FileReader();
+      fr.onload = function () {
+        if (chrome.webview !== undefined) {
+          chrome.webview.hostObjects.scriptObject.ImportSettings(fr.result);
+        }
+      };
+
+      fr.readAsText(file);
     }
   }
 

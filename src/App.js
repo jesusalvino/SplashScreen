@@ -26,8 +26,9 @@ class App extends React.Component {
   }
 
   setBackgroundImage() {
-    const backgroundImage = '#base64BackgroundImage';
+    let backgroundImage = '#base64BackgroundImage';
     if (!backgroundImage.includes('#'))
+      // eslint-disable-next-line no-import-assign
       base64DynamoBackground = backgroundImage;
   }
 

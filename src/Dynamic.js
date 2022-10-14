@@ -19,19 +19,22 @@ class Dynamic extends React.Component {
   render() {
     return (
       <div className='dynamicOptions'>
-        <div>Dynamo core {this.state.dynamoVersion}</div>
+        <div >
+                    Dynamo core {this.state.dynamoVersion}
+        </div>
         <div>
           <div className='progress-bar-container'>
-            <div
-              className='progress-bar-indicator'
-              style={{ width: this.state.barSize }}
-            ></div>
+            <div className='progress-bar-indicator' style={{ width: this.state.barSize }} ></div>
           </div>
         </div>
-        <div>{this.state.loadDescription}</div>
+        <div >
+          {this.state.loadDescription}
+        </div>
         <br />
         <br />
-        <div className='loadingTimeFooter'>{this.state.loadingTime}</div>
+        <div className='loadingTimeFooter' >
+          {this.state.loadingTime}
+        </div>
       </div>
     );
   }
@@ -41,8 +44,9 @@ class Dynamic extends React.Component {
       barSize: barSize,
       dynamoVersion: dynamoVersion,
       loadDescription: loadDescription,
-      loadingTime: loadingTime,
+      loadingTime: loadingTime
     });
+    document.getElementsByClassName('progress-bar-indicator')[0].style.display = 'flex';
   }
 }
 
