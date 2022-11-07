@@ -49,3 +49,8 @@
 .loadingTimeFooter {
   font-size: 9px;
 }
+
+.loadingDescription{  
+  height: 3.6em;
+  line-height: 1.8em;
+}

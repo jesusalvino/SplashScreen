@@ -9,8 +9,6 @@ import { warningIcon, checkMarkIcon } from './encodedImages';
 
 import './Static.css';
 
-/*global chrome*/
-
 const importStatusEnum = {
   none: 1,
   error: 2,
@@ -28,11 +26,18 @@ class Static extends React.Component {
       errorDescription: 'Something went wrong when importing your custom setting file. Please try again or proceed with default settings.',
       signInTitle: this.props.signInTitle,
       signInStatus: this.props.signInStatus,
-      importSettingsTitle: this.props.importSettingsTitle,
+      loadingTime: 'Total loading time: ',
+      importSettingsTitle: this.props.importSettingsTitle
     };
 
     window.setImportStatus = this.setImportStatus.bind(this);
+    window.setTotalLoadingTime = this.setTotalLoadingTime.bind(this);
   }
+
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+  }
+
   render() {
     return (
       <Container className='pr-3'>
@@ -43,7 +48,7 @@ class Static extends React.Component {
         </Row>
 
         <Row className='mt-3'>
-          <button id="btnSignIn" className='primaryButton' onClick={this.signIn}>
+          <button id='btnSignIn' className='primaryButton' onClick={this.signIn}>
             {this.state.signInTitle}
           </button>
         </Row>
@@ -62,7 +67,9 @@ class Static extends React.Component {
               <input
                 type='file'
                 className='primaryButton'
-                onChange={(e) => this.readFile(e)} />
+                accept='.xml'
+                onChange={(e) => this.readFile(e)}
+              />
               <div className='buttonLabel'>
                 <img
                   src={warningIcon}
@@ -91,6 +98,11 @@ class Static extends React.Component {
             </span>
           </label>
         </Row>
+        <Row className='mt-3'>
+          <div className='p-0 loadingTimeFooter' >
+            {this.state.loadingTime}
+          </div>
+        </Row>
       </Container>
     );
   }
@@ -103,29 +115,29 @@ class Static extends React.Component {
         var ret = await chrome.webview.hostObjects.scriptObject.SignOut();
         this.setState({
           signInStatus: !ret,
-          signInTitle: "Sign In"
-        })
+          signInTitle: 'Sign In'
+        });
       }
       else {
-        var btn = document.getElementById("btnSignIn");
+        var btn = document.getElementById('btnSignIn');
         btn.classList.add('disableButton');
         btn.disabled = true;
 
-        this.setState({ signInTitle: "Signing In" })
-        var ret = await chrome.webview.hostObjects.scriptObject.SignIn();
-        this.setState({ signInStatus: ret });
+        this.setState({ signInTitle: 'Signing In' });
+        var status = await chrome.webview.hostObjects.scriptObject.SignIn();
+        this.setState({ signInStatus: status });
 
         btn.classList.remove('disableButton');
         btn.disabled = false;
         if (ret) {
-          this.setState({ signInTitle: "Sign Out" })
+          this.setState({ signInTitle: 'Sign Out' });
         }
         else {
-          this.setState({ signInTitle: "Sign In" })
+          this.setState({ signInTitle: 'Sign In' });
         }
       }
     }
-  }
+  };
 
   //This method calls another method from Dynamo to actually launch it
   launchDynamo() {
@@ -159,10 +171,24 @@ class Static extends React.Component {
     });
   }
 
+
+  setTotalLoadingTime(loadingTime) {
+    this.setState({
+      loadingTime: loadingTime
+    });
+  }
+
   //Every time the checkbox is clicked, this method is called
   handleChange() {
     checked = !checked;
   }
+
+  handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      document.removeEventListener('keydown', this.handleKeyDown);
+      this.launchDynamo();
+    }
+  };
 }
 
 Static.defaultProps = {
@@ -175,7 +201,9 @@ Static.defaultProps = {
 Static.propTypes = {
   signInTitle: PropTypes.string,
   launchTitle: PropTypes.string,
-  showScreenAgainLabel: PropTypes.string
+  showScreenAgainLabel: PropTypes.string,
+  signInStatus: PropTypes.bool,
+  importSettingsTitle: PropTypes.string
 };
 
 export default Static;

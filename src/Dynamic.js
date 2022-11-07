@@ -27,7 +27,7 @@ class Dynamic extends React.Component {
             <div className='progress-bar-indicator' style={{ width: this.state.barSize }} ></div>
           </div>
         </div>
-        <div >
+        <div className='loadingDescription' >
           {this.state.loadDescription}
         </div>
         <br />

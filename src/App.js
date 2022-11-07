@@ -36,7 +36,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container className='fill'>
+      <Container fluid>
         <Row>
           <Col className='menuOptions px-4' >
             <Row className='bottomMenu'>
@@ -56,20 +56,21 @@ class App extends React.Component {
             <Row className='bottomMenu'>
               <Col>
                 {
-                   this.state.loadingDone ?
-                   <Static
-                     signInStatus={this.state.signInStatus}
-                     signInTitle={this.state.signInTitle}
-                     welcomeToDynamoTitle={this.state.welcomeToDynamoTitle}
-                     launchTitle={this.state.launchTitle}
-                     showScreenAgainLabel={this.state.showScreenAgainLabel}
-                     importSettingsTitle={this.state.importSettingsTitle}
-                   /> : <Dynamic />
+                  this.state.loadingDone ?
+                    <Static
+                      signInStatus={this.state.signInStatus}
+                      signInTitle={this.state.signInTitle}
+                      welcomeToDynamoTitle={this.state.welcomeToDynamoTitle}
+                      launchTitle={this.state.launchTitle}
+                      showScreenAgainLabel={this.state.showScreenAgainLabel}
+                      importSettingsTitle={this.state.importSettingsTitle}
+                    /> : <Dynamic />
                 }
               </Col>
             </Row>
           </Col>
           <Col className='p-0' >
+            <span onClick={this.closeDynamo} className='close'/>
             <img className='screenBackground' alt='' src={base64DynamoBackground}></img>
           </Col>
         </Row>
@@ -91,7 +92,7 @@ class App extends React.Component {
   setSignInStatus(val) {
     this.setState({
       signInTitle: val.signInTitle,
-      signInStatus: val.signInStatus === "True",
+      signInStatus: val.signInStatus === 'True',
     });
   }
 
@@ -100,7 +101,12 @@ class App extends React.Component {
     this.setState({
       loadingDone: true
     });
+  };
+  
+  closeDynamo(){
+    if (chrome.webview !== undefined) {
+      chrome.webview.hostObjects.scriptObject.CloseWindow();
+    }
   }
 }
-
 export default App;

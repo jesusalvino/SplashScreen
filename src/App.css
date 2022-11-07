@@ -17,6 +17,37 @@
 }
 
 .screenBackground {
-  height: 377px;
-  width: 320px;
+  height: 452px;
+  width: 404px;
+}
+
+.close {
+  position: absolute;
+  cursor: pointer;
+  right: 32px;
+  top: 15px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+}
+
+.close:hover {
+  opacity: 1;
+}
+
+.close:before, .close:after {
+  position: absolute;
+  left: 25px;
+  content: ' ';
+  height: 33px;
+  width: 2px;
+  background-color: #333;
+}
+
+.close:before {
+  transform: rotate(45deg);
+}
+
+.close:after {
+  transform: rotate(-45deg);
 }
