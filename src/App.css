@@ -17,8 +17,8 @@
 }
 
 .screenBackground {
-  height: 452px;
-  width: 404px;
+  height: 412px;
+  width: 394px;
 }
 
 .close {
@@ -26,8 +26,8 @@
   cursor: pointer;
   right: 32px;
   top: 15px;
-  width: 32px;
-  height: 32px;
+  width: 16px;
+  height: 16px;
   opacity: 0.3;
 }
 
@@ -39,7 +39,7 @@
   position: absolute;
   left: 25px;
   content: ' ';
-  height: 33px;
+  height: 16px;
   width: 2px;
   background-color: #333;
 }

@@ -8,6 +8,7 @@
 <body>
   <script>
     document.querySelector('body').style.overflow = 'hidden'
+    document.body.ondragstart = function() { return false; };
   </script>
   <div id="root"></div>
   <script>mainJs</script>
