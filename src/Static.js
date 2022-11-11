@@ -58,9 +58,9 @@ class Static extends React.Component {
             placement={'right'}
             overlay={
               <Tooltip
-                hidden={this.state.importStatus !== importStatusEnum.error}
+                hidden={this.state.importStatus === importStatusEnum.success}
                 id='button-tooltip'>
-                {this.state.errorDescription}
+                {this.state.importStatus == importStatusEnum.error ? this.state.errorDescription : this.props.importSettingsTooltipDescription}
               </Tooltip>
             }>
             <label className='primaryButton px-1'>
@@ -196,6 +196,8 @@ Static.defaultProps = {
   launchTitle: 'Launch Dynamo',
   showScreenAgainLabel: 'Don\'t show this screen again',
   importSettingsTitle: 'Import Settings',
+  importSettingsTooltipDescription: 'You can import custom settings here, which will overwrite your current settings. If you\'d like to preserve a copy of your current settings, export them before importing new settings. Settings not shown in the Preferences panel will be applied once Dynamo and any host program restarts.'
+
 };
 
 Static.propTypes = {
@@ -203,7 +205,8 @@ Static.propTypes = {
   launchTitle: PropTypes.string,
   showScreenAgainLabel: PropTypes.string,
   signInStatus: PropTypes.bool,
-  importSettingsTitle: PropTypes.string
+  importSettingsTitle: PropTypes.string,
+  importSettingsTooltipDescription: PropTypes.string
 };
 
 export default Static;
