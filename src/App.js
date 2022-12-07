@@ -60,6 +60,8 @@ class App extends React.Component {
                     <Static
                       signInStatus={this.state.signInStatus}
                       signInTitle={this.state.signInTitle}
+                      signingInTitle={this.state.signingInTitle}
+                      signOutTitle={this.state.signOutTitle}
                       welcomeToDynamoTitle={this.state.welcomeToDynamoTitle}
                       launchTitle={this.state.launchTitle}
                       showScreenAgainLabel={this.state.showScreenAgainLabel}
@@ -86,15 +88,17 @@ class App extends React.Component {
       launchTitle: labels.launchTitle,
       showScreenAgainLabel: labels.showScreenAgainLabel,
       importSettingsTitle: labels.importSettingsTitle,
-      importSettingsTooltipDescription: labels.importSettingsTooltipDescription
+      importSettingsTooltipDescription: labels.importSettingsTooltipDescription,
+      signInTitle: labels.signInTitle,
+      signingInTitle: labels.signingInTitle,
+      signOutTitle: labels.signOutTitle
     });
   }
 
   //Set the login status from Dynamo
   setSignInStatus(val) {
-    this.setState({
-      signInTitle: val.signInTitle,
-      signInStatus: val.signInStatus === 'True',
+    this.setState({      
+      signInStatus: val.signInStatus === 'True'
     });
   }
 

@@ -108,14 +108,13 @@ class Static extends React.Component {
   }
 
   //Opens a page to signin
-  //TODO: Localize strings by setting text as per what Dynamo sends in.
   signIn = async () => {
     if (chrome.webview !== undefined) {
       if (this.state.signInStatus) {
         let status = await chrome.webview.hostObjects.scriptObject.SignOut();
         this.setState({
           signInStatus: !status,
-          signInTitle: 'Sign In'
+          signInTitle: this.props.signInTitle
         });
       }
       else {
@@ -123,17 +122,17 @@ class Static extends React.Component {
         btn.classList.add('disableButton');
         btn.disabled = true;
 
-        this.setState({ signInTitle: 'Signing In' });
+        this.setState({ signInTitle: this.props.signingInTitle });
         let status = await chrome.webview.hostObjects.scriptObject.SignIn();
         this.setState({ signInStatus: status });
 
         btn.classList.remove('disableButton');
         btn.disabled = false;
         if (status) {
-          this.setState({ signInTitle: 'Sign Out' });
+          this.setState({ signInTitle: this.props.signOutTitle });
         }
         else {
-          this.setState({ signInTitle: 'Sign In' });
+          this.setState({ signInTitle: this.props.signInTitle });
         }
       }
     }
@@ -171,7 +170,6 @@ class Static extends React.Component {
     });
   }
 
-
   setTotalLoadingTime(loadingTime) {
     this.setState({
       loadingTime: loadingTime
@@ -192,16 +190,19 @@ class Static extends React.Component {
 }
 
 Static.defaultProps = {
-  signInTitle: 'Sign in',
+  signInTitle: 'Sign In',
+  signingInTitle: 'Signing In',
+  signOutTitle: 'Sign Out',
   launchTitle: 'Launch Dynamo',
   showScreenAgainLabel: 'Don\'t show this screen again',
   importSettingsTitle: 'Import Settings',
-  importSettingsTooltipDescription: 'You can import custom settings here, which will overwrite your current settings. If you\'d like to preserve a copy of your current settings, export them before importing new settings. Settings not shown in the Preferences panel will be applied once Dynamo and any host program restarts.'
-
+  importSettingsTooltipDescription: 'You can import custom settings here, which will overwrite your current settings. If you\'d like to preserve a copy of your current settings, export them before importing new settings. Settings not shown in the Preferences panel will be applied once Dynamo and any host program restarts.'  
 };
 
 Static.propTypes = {
   signInTitle: PropTypes.string,
+  signingInTitle: PropTypes.string,
+  signOutTitle: PropTypes.string,
   launchTitle: PropTypes.string,
   showScreenAgainLabel: PropTypes.string,
   signInStatus: PropTypes.bool,
