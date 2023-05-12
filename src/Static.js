@@ -185,6 +185,7 @@ class Static extends React.Component {
 
   handleKeyDown = (e) => {
     if (e.key === 'Enter') {
+      // We check explicitly the lblImportSettings control due to it's a label that wraps inputs, it's no necessary for the launch and signing buttons because they receive the focus ready to are hit with the Enter key
       if (document.activeElement.id === 'lblImportSettings'){        
         document.getElementById('inputImportSettings').click();
       }
