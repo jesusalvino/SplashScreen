@@ -42,13 +42,13 @@ class Static extends React.Component {
     return (
       <Container className='pr-3'>
         <Row className='mt-3'>
-          <button className='secondaryButton' onClick={this.launchDynamo}>
+        <button className='secondaryButton' onClick={this.launchDynamo} tabIndex={1}>
             {this.props.launchTitle}
           </button>
         </Row>
 
         <Row className='mt-3'>
-          <button id='btnSignIn' className='primaryButton' onClick={this.signIn}>
+        <button id='btnSignIn' className='primaryButton' onClick={this.signIn} tabIndex={2}>
             {this.state.signInTitle}
           </button>
         </Row>
@@ -63,8 +63,9 @@ class Static extends React.Component {
                 {this.state.importStatus == importStatusEnum.error ? this.state.errorDescription : this.props.importSettingsTooltipDescription}
               </Tooltip>
             }>
-            <label className='primaryButton px-1'>
+            <label id='lblImportSettings' className='primaryButton px-1' tabIndex={3}>
               <input
+                id='inputImportSettings'
                 type='file'
                 className='primaryButton'
                 accept='.xml'
@@ -91,7 +92,8 @@ class Static extends React.Component {
             <input
               type='checkbox'
               onChange={this.handleChange}
-              className='checkBoxStyle' />
+              className='checkBoxStyle'
+              tabIndex={4}/>
             <span className='checkmark'>
               {' '}
               {this.props.showScreenAgainLabel}{' '}
@@ -183,8 +185,9 @@ class Static extends React.Component {
 
   handleKeyDown = (e) => {
     if (e.key === 'Enter') {
-      document.removeEventListener('keydown', this.handleKeyDown);
-      this.launchDynamo();
+      if (document.activeElement.id === 'lblImportSettings'){        
+        document.getElementById('inputImportSettings').click();
+      }
     }
   };
 }
