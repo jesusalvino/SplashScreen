@@ -34,6 +34,19 @@ class App extends React.Component {
       base64DynamoBackground = backgroundImage;
   }
 
+  componentDidMount() {
+    document.addEventListener('keydown', this.handleKeyDown);
+    //TODO : As alternative we can receive the event from the Childs like the Static component
+  }
+
+  handleKeyDown = (e) => {    
+    if (e.key === 'Escape'){
+        if (this.state.loadingDone){
+            this.closeDynamo()
+        }
+    }
+  };
+
   render() {
     return (
       <Container fluid>
