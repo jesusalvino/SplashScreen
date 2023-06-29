@@ -15,7 +15,7 @@ class App extends React.Component {
     super();
     this.setBackgroundImage();
     this.state = {
-      welcomeToDynamoTitle: 'Welcome to Dynamo!',
+      welcomeToDynamoTitle: '',
       loadingDone: false,
       signInStatus: false
     };

@@ -9,7 +9,7 @@ class Dynamic extends React.Component {
       barSize: '0%',
       dynamoVersion: '',
       loadDescription: '',
-      loadingTime: 'Loading time: ',
+      loadingTime: '',
     };
 
     //This is a reference to the DOM of the project that will be called in Dynamo to fill the loading properties
