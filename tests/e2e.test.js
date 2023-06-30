@@ -13,7 +13,7 @@ test.describe('SplashScreen', () => {
     await expect(dynamoLogo).toBeVisible;
 
     const welcomeRow = page.locator('.welcomeRow');
-    await expect(welcomeRow).toHaveText('');
+    await expect(welcomeRow).toHaveText('Welcome to Dynamo!');
 
     const dynamicOptions = page.locator('.dynamicOptions');
     await expect(dynamicOptions).toContainText('Dynamo Core');
