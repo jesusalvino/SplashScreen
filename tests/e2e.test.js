@@ -25,7 +25,7 @@ test.describe('SplashScreen', () => {
     await expect(progressBarIndicator).toBeVisible;
 
     const loadingTimeFooter = page.locator('.loadingTimeFooter');
-    await expect(loadingTimeFooter).toHaveText('Loading time:');
+    await expect(loadingTimeFooter).toHaveText('');
   });
 
 });

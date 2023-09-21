@@ -49,7 +49,7 @@ class Static extends React.Component {
 
         <Row className='mt-3'>
         <button id='btnSignIn' className='primaryButton' onClick={this.signIn} tabIndex={2}>
-            {this.state.signInTitle}
+            {this.props.signInTitle}
           </button>
         </Row>
 
@@ -81,7 +81,7 @@ class Static extends React.Component {
                   alt=''
                   hidden={this.state.importStatus !== importStatusEnum.success}></img>
                 <div className='importSettingsText'>
-                  <span>{this.state.importSettingsTitle}</span>
+                  <span>{this.props.importSettingsTitle}</span>
                 </div>
               </div>
             </label>
