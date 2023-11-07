@@ -32,6 +32,7 @@ class Static extends React.Component {
 
     window.setImportStatus = this.setImportStatus.bind(this);
     window.setTotalLoadingTime = this.setTotalLoadingTime.bind(this);
+    window.setEnableSignInButton = this.setEnableSignInButton.bind(this);
   }
 
   componentDidMount() {
@@ -176,6 +177,18 @@ class Static extends React.Component {
     this.setState({
       loadingTime: loadingTime
     });
+  }
+
+  setEnableSignInButton(enableSignInButton) {
+    let btn = document.getElementById('btnSignIn');
+
+    if (enableSignInButton.enable === 'True'){
+      btn.classList.remove('disableButton');
+      btn.disabled = false;
+    }else{
+      btn.classList.add('disableButton');
+      btn.disabled = true;     
+    }
   }
 
   //Every time the checkbox is clicked, this method is called
