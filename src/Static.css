@@ -27,6 +27,8 @@
 
 .disableButton {
     background-color: #6e6e6e;
+    cursor:default;
+    pointer-events:none;
 }
 
 .secondaryButton {
